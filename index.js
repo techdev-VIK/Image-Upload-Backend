@@ -1,8 +1,12 @@
 const express = require('express');
 
-const {initilaizeDatabase} = require('./db.connect.js')
+const {initilaizeDatabase} = require('./db.connect.js');
+
+// adding multer
 
 const multer = require('multer');
+
+// cloudinary for uploading images
 
 const cloudinary = require('cloudinary');
 
@@ -35,7 +39,7 @@ cloudinary.config({
 
 const storage = multer.diskStorage({});
 
-const upload = multer ({ storage})
+const upload = multer ({ storage});
 
 
 // api endpoint
@@ -64,11 +68,11 @@ app.post("/upload", upload.single('image'), async(req, res) => {
     } catch (error) {
         res.status(500).json({message: "Image upload failed", error: error})
     }
-})
+});
 
 
-const PORT = 3000
+const PORT = 3000;
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`)
-})
+});
